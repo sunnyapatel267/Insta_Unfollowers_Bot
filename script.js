@@ -205,7 +205,7 @@ async function start(){
 
         count = count + 1 
 
-        if(count == 25){
+        if(count == 15){
             console.log("WAITING AN HOUR!!!")
             await delay(3600000)
             count = 0
