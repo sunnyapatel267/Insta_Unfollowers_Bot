@@ -1,4 +1,4 @@
-# Insta_Unfollowers_Bot
+# Instagram Unfollowers Bot
 
 This bot automates the process of finding and unfollowing users who do not follow you back on Instagram, and then proceeds to unfollow users that do not follow your account back. 
 
