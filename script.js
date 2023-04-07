@@ -44,12 +44,18 @@ async function start(){
     await delay(3000)
 
     //clicks login button
+    await page.waitForSelector('button[type=submit]');
     await page.click('button[type=submit]')
     
     //Deals with pop up
-    await delay(7000)
-    await page.click('button[type=button]')
-
+    await delay(5000)
+    await page.waitForSelector('button[type=button]');
+    try{
+        await page.click('button[type=button]')
+    }catch(error){
+        console.log("No pop found!")
+    }
+    
     await delay(7000)
     //Deals with Notification popup
     await page.waitForSelector('button._a9--._a9_1')
@@ -86,10 +92,10 @@ async function start(){
     await delay(2000)  
 
     //Gets list of following
-    // div > div > div > div > div > a > span > div
-    await page.waitForSelector('div > div > div > div > div > a > span > div')
+    //Selector(Updated 04/06/2023): div > div > div > div > div > span > span > div > div > div > a > span > div
+    await page.waitForSelector('div > div > div > div > div > span > span > div > div > div > a > span > div')
     const following = await page.evaluate(() =>{
-        return Array.from(document.querySelectorAll('div > div > div > div > div > a > span > div')).map(x => x.textContent)
+        return Array.from(document.querySelectorAll('div > div > div > div > div > span > span > div > div > div > a > span > div')).map(x => x.textContent)
     })
 
     //if they have 'Verifed' Remove it from strings in array
@@ -125,10 +131,10 @@ async function start(){
     } 
 
     //Get accounts from followers list - may change as website updates
-    //div > div > div > div > div > a > span > div
-    await page.waitForSelector('div > div > div > div > div > a > span > div')
+    //Selector(Updated 04/06/2023): div > div > div > div > div > span > span > div > div > div > a > span > div
+    await page.waitForSelector('div > div > div > div > div > span > span > div > div > div > a > span > div')
     const followers = await page.evaluate(() =>{
-        return Array.from(document.querySelectorAll('div > div > div > div > div > a > span > div')).map(x => x.textContent)
+        return Array.from(document.querySelectorAll('div > div > div > div > div > span > span > div > div > div > a > span > div')).map(x => x.textContent)
     })
 
     //If account in followers is Verifed, it will remove that part.
@@ -197,15 +203,17 @@ async function start(){
         await delay(r2)
 
         //Clicks "Unfollow" button
-        await page.waitForSelector('._abm4')
-        const unfollowButton = await page.$$('._abm4')
+        //.x1i10hfl
+        //._abm4
+        await page.waitForSelector('.x1i10hfl')
+        const unfollowButton = await page.$$('.x1i10hfl')
         await unfollowButton[unfollowButton.length-1].click()
 
         console.log("Unfollowed " + unfollowers[i])
 
         count = count + 1 
 
-        if(count == 15){
+        if(count == 25){
             console.log("WAITING AN HOUR!!!")
             await delay(3600000)
             count = 0
