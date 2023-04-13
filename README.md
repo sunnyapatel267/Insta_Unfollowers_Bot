@@ -15,7 +15,7 @@ Usage
 - Run `npm init` to get `node_modules`
 - Run `npm i puppeteer` to install `puppeteer`
 - Run `npm install readline` to install `readline`
-- Run node script.js in the terminal
+- To run the program, use `node script.js` in the terminal
 - Enter your Instagram username and password when prompted
 - The bot will take care of the rest and show you a list of users who do not follow you back
 - Then the bot will ask if you want to remove any users from the list of unfollowers
