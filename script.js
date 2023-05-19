@@ -46,21 +46,6 @@ async function start(){
     //clicks login button
     await page.waitForSelector('button[type=submit]');
     await page.click('button[type=submit]')
-    
-    //Deals with pop up
-    await delay(5000)
-    await page.waitForSelector('button[type=button]');
-    try{
-        await page.click('button[type=button]')
-    }catch(error){
-        console.log("No pop found!")
-    }
-    
-    await delay(7000)
-    //Deals with Notification popup
-    await page.waitForSelector('button._a9--._a9_1')
-    const myButton = await page.$('button._a9--._a9_1')
-    await myButton.click()
 
     //Goes to profile page
     await delay(10000)
@@ -204,7 +189,6 @@ async function start(){
 
         //Clicks "Unfollow" button
         //.x1i10hfl
-        //._abm4
         await page.waitForSelector('.x1i10hfl')
         const unfollowButton = await page.$$('.x1i10hfl')
         await unfollowButton[unfollowButton.length-1].click()
